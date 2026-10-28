@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>South Artists Network | Talent Management · Exclusively South</title>
+    <meta name="description" content="South Artists Network (SAN) — Premier South Indian creative talent management. Managing leading actors, creators, and influencers across Tamil, Telugu, Malayalam, and Kannada audiences." />
+    <meta name="theme-color" content="#0f0e0d" />
+    <link rel="icon" type="image/png" href="/san-logo.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat+Brush&family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Anti-flash theme initialization -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('san-theme');
+          var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.colorScheme = theme === 'light' ? 'light' : 'dark';
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

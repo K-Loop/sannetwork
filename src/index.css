@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-script: "Caveat Brush", cursive;
+  --font-impact: "Archivo Black", Impact, sans-serif;
+
+  --color-san-bg: var(--bg);
+  --color-san-surface: var(--surf);
+  --color-san-text: var(--tx);
+  --color-san-muted: var(--tx2);
+  --color-san-border: var(--bd);
+  --color-san-orange: var(--or);
+  --color-san-amber: var(--am);
+  --color-san-gold: var(--go);
+  --color-san-ink: var(--ink);
+  --color-san-parchment: var(--par);
+}
+
+:root {
+  --bg: #0f0e0d;
+  --surf: #1c1a18;
+  --tx: #fff8ec;
+  --tx2: #b8ac9c;
+  --bd: #34302b;
+  --or: #e8720c;
+  --am: #b4530a;
+  --go: #f2b134;
+  --ink: #2b1a10;
+  --par: #f6e6c8;
+  --grad: linear-gradient(135deg, #f2b134, #e8720c 55%, #b4530a);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6e6c8;
+  --surf: #fff8ec;
+  --tx: #2b1a10;
+  --tx2: #6b5640;
+  --bd: #e2cfa8;
+  --or: #d96205;
+  --am: #9c4205;
+  --go: #d99a22;
+  --ink: #2b1a10;
+  --par: #edd8b4;
+  --grad: linear-gradient(135deg, #d99a22, #d96205 55%, #9c4205);
+  color-scheme: light;
+}
+
+:root[data-theme="temple"] {
+  --bg: #160c08;
+  --surf: #24140d;
+  --tx: #fff6ee;
+  --tx2: #c5a898;
+  --bd: #452417;
+  --or: #ea580c;
+  --am: #c2410c;
+  --go: #fbbf24;
+  --ink: #2b1a10;
+  --par: #fed7aa;
+  --grad: linear-gradient(135deg, #fbbf24, #ea580c 55%, #c2410c);
+  color-scheme: dark;
+}
+
+html {
+  scroll-padding-top: calc(90px + env(safe-area-inset-top, 0px));
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--tx);
+  font-family: var(--font-sans);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
