@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, Heart, Play } from 'lucide-react';
+import { Menu, Heart } from 'lucide-react';
 import { NAV_LINKS } from '../../data/navigation';
 import ThemeSwitcher from './ThemeSwitcher';
 import MobileMenu from './MobileMenu';
@@ -11,7 +11,6 @@ export default function Navbar({
   onCycleTheme,
   shortlistCount,
   onOpenShortlist,
-  onReplayIntro,
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -69,18 +68,6 @@ export default function Navbar({
 
         {/* Right action group */}
         <div className="flex items-center gap-2.5 sm:gap-3">
-          {/* Replay Intro Reel button (compact pill) */}
-          {onReplayIntro && (
-            <button
-              onClick={onReplayIntro}
-              className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--bd)] bg-[var(--surf)] hover:border-[var(--or)] hover:text-[var(--or)] text-xs font-semibold text-[var(--tx2)] transition-colors cursor-pointer"
-              title="Replay intro video reel"
-            >
-              <Play className="w-3 h-3 text-[var(--or)] fill-current" />
-              <span>Intro Reel</span>
-            </button>
-          )}
-
           {/* Shortlist button */}
           <button
             onClick={onOpenShortlist}
@@ -147,7 +134,6 @@ export default function Navbar({
         onCycleTheme={onCycleTheme}
         shortlistCount={shortlistCount}
         onOpenShortlist={onOpenShortlist}
-        onReplayIntro={onReplayIntro}
       />
     </header>
   );

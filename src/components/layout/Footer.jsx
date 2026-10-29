@@ -40,7 +40,7 @@ function LinkedinIcon({ className = 'w-4 h-4' }) {
 
 const CURRENT_YEAR = new Date().getFullYear();
 
-export default function Footer({ onNavigate, onReplayIntro }) {
+export default function Footer({ onNavigate }) {
   const scrollToTop = (e) => {
     if (e && e.preventDefault) e.preventDefault();
     if (onNavigate) {
@@ -156,13 +156,6 @@ export default function Footer({ onNavigate, onReplayIntro }) {
                   Home
                 </a>
                 <a
-                  href="#clients"
-                  onClick={(e) => onNavigate && onNavigate(e, 'clients')}
-                  className="px-3 py-1.5 rounded-full border border-[var(--bd)] bg-[var(--bg)] hover:border-[var(--or)] text-[var(--tx)] transition-colors cursor-pointer"
-                >
-                  Roster
-                </a>
-                <a
                   href="#services"
                   onClick={(e) => onNavigate && onNavigate(e, 'services')}
                   className="px-3 py-1.5 rounded-full border border-[var(--bd)] bg-[var(--bg)] hover:border-[var(--or)] text-[var(--tx)] transition-colors cursor-pointer"
@@ -177,20 +170,19 @@ export default function Footer({ onNavigate, onReplayIntro }) {
                   Process
                 </a>
                 <a
+                  href="#clients"
+                  onClick={(e) => onNavigate && onNavigate(e, 'clients')}
+                  className="px-3 py-1.5 rounded-full border border-[var(--bd)] bg-[var(--bg)] hover:border-[var(--or)] text-[var(--tx)] transition-colors cursor-pointer"
+                >
+                  Roster
+                </a>
+                <a
                   href="#brands"
                   onClick={(e) => onNavigate && onNavigate(e, 'brands')}
                   className="px-3 py-1.5 rounded-full border border-[var(--bd)] bg-[var(--bg)] hover:border-[var(--or)] text-[var(--tx)] transition-colors cursor-pointer"
                 >
                   Contact
                 </a>
-                {onReplayIntro && (
-                  <button
-                    onClick={onReplayIntro}
-                    className="px-3 py-1.5 rounded-full border border-[var(--or)]/40 bg-[var(--or)]/10 text-[var(--or)] hover:bg-[var(--or)] hover:text-[#0f0e0d] transition-all font-semibold cursor-pointer"
-                  >
-                    ▶ Replay Intro Reel
-                  </button>
-                )}
               </div>
             </div>
 

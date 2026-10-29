@@ -5,17 +5,16 @@ import ScrollProgress from './components/layout/ScrollProgress';
 import ToastNotification from './components/ui/ToastNotification';
 import HeroSection from './components/sections/HeroSection';
 import StatsBand from './components/sections/StatsBand';
-import ArtistsSection from './components/sections/ArtistsSection';
 import ServicesSection from './components/sections/ServicesSection';
 import ProcessSection from './components/sections/ProcessSection';
+import ArtistsSection from './components/sections/ArtistsSection';
 import EnquirySection from './components/sections/EnquirySection';
-import VideoModal from './components/ui/VideoModal';
 import IntroOverlay from './components/intro/IntroOverlay';
 import { useTheme } from './hooks/useTheme';
 import { useShortlist } from './hooks/useShortlist';
 import { ArrowUpRight } from 'lucide-react';
 
-const SECTION_IDS = ['home', 'clients', 'services', 'process', 'brands'];
+const SECTION_IDS = ['home', 'services', 'process', 'clients', 'brands'];
 
 export default function App() {
   const [toastMessage, setToastMessage] = useState('');
@@ -41,11 +40,8 @@ export default function App() {
   const [selectedSort, setSelectedSort] = useState('reach');
   const [isShortlistOnly, setIsShortlistOnly] = useState(false);
 
-  // Intro video transition state
+  // Intro video transition state (first intro video then website transition)
   const [showIntroOverlay, setShowIntroOverlay] = useState(true);
-
-  // Video cinema modal state (for on-demand watching)
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   // Active section tracking for navbar and floating CTA
   const [activeSection, setActiveSection] = useState('home');
@@ -56,11 +52,6 @@ export default function App() {
   // Complete intro and transition into the website
   const handleCompleteIntro = useCallback(() => {
     setShowIntroOverlay(false);
-  }, []);
-
-  // Replay intro video transition on demand
-  const handleReplayIntro = useCallback(() => {
-    setShowIntroOverlay(true);
   }, []);
 
   // Programmatic smooth navigation with offset and immediate active tab feedback
@@ -141,19 +132,6 @@ export default function App() {
     };
   }, []);
 
-  // When clicking an artist from the hero fan
-  const handleSelectArtistFromFan = useCallback((artist) => {
-    setSearchQuery(artist.name);
-    setSelectedCategory('All');
-    setIsShortlistOnly(false);
-
-    const rosterEl = document.getElementById('clients');
-    if (rosterEl) {
-      const top = rosterEl.getBoundingClientRect().top + window.scrollY - 84;
-      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-    }
-  }, []);
-
   // When clicking View Shortlist from navbar or mobile drawer
   const handleOpenShortlist = useCallback(() => {
     setIsShortlistOnly(true);
@@ -177,20 +155,26 @@ export default function App() {
         onCycleTheme={cycleTheme}
         shortlistCount={shortlist.length}
         onOpenShortlist={handleOpenShortlist}
-        onReplayIntro={handleReplayIntro}
       />
 
-      {/* Main Content Sections (No intro page in home page body) */}
+      {/* Main Content Sections */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 w-full">
+        {/* 1. Hero Section with 8-discipline keywords card fan */}
         <HeroSection
-          onSelectArtistFromFan={handleSelectArtistFromFan}
-          onOpenVideoModal={() => setIsVideoModalOpen(true)}
           onNavigate={handleNavigate}
           isIntroActive={showIntroOverlay}
         />
 
+        {/* 2. Stats Band */}
         <StatsBand />
 
+        {/* 3. Services Section */}
+        <ServicesSection />
+
+        {/* 4. Methodology / Process Section */}
+        <ProcessSection />
+
+        {/* 5. Talent Roster Section — Placed at the bottom line of website */}
         <ArtistsSection
           shortlist={shortlist}
           onToggleShortlist={toggleShortlist}
@@ -206,10 +190,7 @@ export default function App() {
           onToggleShortlistOnly={() => setIsShortlistOnly((prev) => !prev)}
         />
 
-        <ServicesSection />
-
-        <ProcessSection />
-
+        {/* 6. Campaign Brief / Contact Section */}
         <EnquirySection
           shortlist={shortlist}
           onRemoveFromShortlist={toggleShortlist}
@@ -220,7 +201,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer onNavigate={handleNavigate} onReplayIntro={handleReplayIntro} />
+      <Footer onNavigate={handleNavigate} />
 
       {/* Floating CTA Pill */}
       {showFloatingPill && (
@@ -237,13 +218,6 @@ export default function App() {
 
       {/* Toast Notification Container */}
       <ToastNotification message={toastMessage} isVisible={toastVisible} />
-
-      {/* Cinema Video Modal (for on-demand viewing) */}
-      <VideoModal
-        isOpen={isVideoModalOpen}
-        onClose={() => setIsVideoModalOpen(false)}
-        videoSrc="/intro.mp4"
-      />
 
       {/* First Intro Video Experience with Cinematic Website Transition */}
       <IntroOverlay

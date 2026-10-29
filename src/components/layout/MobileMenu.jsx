@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Heart, ArrowUpRight, Play } from 'lucide-react';
+import { X, Heart, ArrowUpRight } from 'lucide-react';
 import { NAV_LINKS } from '../../data/navigation';
 import ThemeSwitcher from './ThemeSwitcher';
 
@@ -12,7 +12,6 @@ export default function MobileMenu({
   onCycleTheme,
   shortlistCount,
   onOpenShortlist,
-  onReplayIntro,
 }) {
   // Prevent background scroll when mobile menu is open
   useEffect(() => {
@@ -87,25 +86,6 @@ export default function MobileMenu({
               </a>
             );
           })}
-
-          {/* Replay Intro Option */}
-          {onReplayIntro && (
-            <button
-              onClick={() => {
-                onClose();
-                onReplayIntro();
-              }}
-              className="flex items-center justify-between px-4 py-3 rounded-2xl border border-[var(--bd)] bg-[var(--bg)] hover:border-[var(--or)] text-[var(--tx)] font-semibold text-sm transition-colors cursor-pointer mt-1"
-            >
-              <span className="flex items-center gap-2">
-                <Play className="w-4 h-4 text-[var(--or)] fill-current" />
-                <span>Watch Intro Reel</span>
-              </span>
-              <span className="text-[10px] text-[var(--or)] font-bold uppercase tracking-wider bg-[var(--or)]/15 px-2 py-0.5 rounded-full">
-                Video
-              </span>
-            </button>
-          )}
         </nav>
 
         {/* Shortlist status */}
